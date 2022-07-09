@@ -1,0 +1,16 @@
+@import "../styles/variables.scss";
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1em;
+}
+
+.navItems{
+    display: flex;
+}
+
+.navItem{
+    font-size: 2em;
+    padding-right: 1em;
+}
