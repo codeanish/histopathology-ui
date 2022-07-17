@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "histopathology3b92f53c_identitypool_3b92f53c",
+    "identityPoolName": "histopathology4e6dfaa3_identitypool_4e6dfaa3",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "histop3b92f53c",
-    "userPoolName": "histopathology3b92f53c_userpool_3b92f53c",
+    "resourceNameTruncated": "histop4e6dfaa3",
+    "userPoolName": "histopathology4e6dfaa3_userpool_4e6dfaa3",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,10 +31,10 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "histop3b92f53c_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "histop4e6dfaa3_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "3b92f53c",
-    "resourceName": "histopathology3b92f53c",
+    "sharedId": "4e6dfaa3",
+    "resourceName": "histopathology4e6dfaa3",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "default",
     "usernameAttributes": [

@@ -1,19 +1,25 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-histopathology-dev-82343-authRole",
-      "UnauthRoleArn": "arn:aws:iam::429743971111:role/amplify-histopathology-dev-82343-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::429743971111:role/amplify-histopathology-dev-82343-authRole",
+      "AuthRoleName": "amplify-histopathology-dev-120502-authRole",
+      "UnauthRoleArn": "arn:aws:iam::429743971111:role/amplify-histopathology-dev-120502-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::429743971111:role/amplify-histopathology-dev-120502-authRole",
       "Region": "eu-west-1",
-      "DeploymentBucketName": "amplify-histopathology-dev-82343-deployment",
-      "UnauthRoleName": "amplify-histopathology-dev-82343-unauthRole",
-      "StackName": "amplify-histopathology-dev-82343",
-      "StackId": "arn:aws:cloudformation:eu-west-1:429743971111:stack/amplify-histopathology-dev-82343/1099c2c0-ff58-11ec-9343-0ad0cc891dd1",
-      "AmplifyAppId": "d1m7nzzi3zpn5f"
+      "DeploymentBucketName": "amplify-histopathology-dev-120502-deployment",
+      "UnauthRoleName": "amplify-histopathology-dev-120502-unauthRole",
+      "StackName": "amplify-histopathology-dev-120502",
+      "StackId": "arn:aws:cloudformation:eu-west-1:429743971111:stack/amplify-histopathology-dev-120502/5040ff10-05c0-11ed-9376-02c66cfc201f",
+      "AmplifyAppId": "d1lukevluoyge9"
     },
     "categories": {
       "auth": {
-        "histopathology3b92f53c": {}
+        "histopathology4e6dfaa3": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1lukevluoyge9",
+          "type": "manual"
+        }
       }
     }
   }
