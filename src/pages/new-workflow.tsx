@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import StyledFileSelectorButton from "../components/SytledFileSelectorButton";
+import WorkflowService from "../services/WorkflowService"
 
 const NewWorkflow = () => {
 
@@ -19,23 +20,24 @@ const NewWorkflow = () => {
     const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
         console.log("form submitted");
         event.preventDefault();
-        const path = '/workflows'
-        const options = {
-            url: path,
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: {
+        WorkflowService.createWorkflow("myCoolWorkflow")
+        // const path = '/workflows'
+        // const options = {
+        //     url: path,
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     data: {
 
-            }
-        }
-        axios(options)
-            .then(response => response.data)
-            .then(data => {
-                uploadFiles(data['workflow_id'])
-            })
-            .then(() => navigate('/'))
+        //     }
+        // }
+        // axios(options)
+        //     .then(response => response.data)
+        //     .then(data => {
+        //         uploadFiles(data['workflow_id'])
+        //     })
+        //     .then(() => navigate('/'))
     }
 
     const uploadFiles = (workflowId: String) => {

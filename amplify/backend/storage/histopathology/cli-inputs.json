@@ -1,0 +1,10 @@
+{
+  "resourceName": "histopathology",
+  "tableName": "histopathology",
+  "partitionKey": {
+    "fieldName": "id",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

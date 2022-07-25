@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "storage": {
+      "histopathology": [
+        "create",
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

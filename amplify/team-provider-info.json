@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-histopathology-dev-120502-unauthRole",
       "StackName": "amplify-histopathology-dev-120502",
       "StackId": "arn:aws:cloudformation:eu-west-1:429743971111:stack/amplify-histopathology-dev-120502/5040ff10-05c0-11ed-9376-02c66cfc201f",
-      "AmplifyAppId": "d1lukevluoyge9"
+      "AmplifyAppId": "d1lukevluoyge9",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-histopathology-dev-120502-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
@@ -19,6 +20,12 @@
         "amplifyhosting": {
           "appId": "d1lukevluoyge9",
           "type": "manual"
+        }
+      },
+      "function": {
+        "histopatholgy": {
+          "deploymentBucketName": "amplify-histopathology-dev-120502-deployment",
+          "s3Key": "amplify-builds/histopatholgy-56654d4c57416935394e-build.zip"
         }
       }
     }

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "paths": {
+    "/workflows": {
+      "name": "/workflows",
+      "lambdaFunction": "histopatholgy",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update"
+        ]
+      }
+    }
+  }
+}
