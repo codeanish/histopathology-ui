@@ -72,6 +72,11 @@
     "histopathology": {
       "service": "DynamoDB",
       "providerPlugin": "awscloudformation"
+    },
+    "histopathologybucket": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
     }
   }
 }

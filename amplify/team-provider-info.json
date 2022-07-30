@@ -25,7 +25,7 @@
       "function": {
         "histopatholgy": {
           "deploymentBucketName": "amplify-histopathology-dev-120502-deployment",
-          "s3Key": "amplify-builds/histopatholgy-56654d4c57416935394e-build.zip"
+          "s3Key": "amplify-builds/histopatholgy-4e456a72745471537230-build.zip"
         }
       }
     }

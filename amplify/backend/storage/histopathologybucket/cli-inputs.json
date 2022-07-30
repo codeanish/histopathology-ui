@@ -1,0 +1,14 @@
+{
+  "resourceName": "histopathologybucket",
+  "policyUUID": "529e5629",
+  "bucketName": "codeanish-histopathology",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

@@ -33,6 +33,10 @@ export type AmplifyDependentResourcesAttributes = {
             "PartitionKeyName": "string",
             "PartitionKeyType": "string",
             "Region": "string"
+        },
+        "histopathologybucket": {
+            "BucketName": "string",
+            "Region": "string"
         }
     }
 }

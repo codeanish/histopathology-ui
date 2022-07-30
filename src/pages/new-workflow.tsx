@@ -1,14 +1,24 @@
-import { Button } from "@mui/material";
-import axios from 'axios';
-import React, { useState } from "react";
+import { Button, TextField } from "@mui/material";
+import { Auth } from "aws-amplify";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import StyledFileSelectorButton from "../components/SytledFileSelectorButton";
+import StorageService from "../services/StorageService";
 import WorkflowService from "../services/WorkflowService"
 
 const NewWorkflow = () => {
 
     const [fileInput, setFileInput] = useState<File>();
     const [submitted, setSubmitted] = useState(false);
+    const [email, setEmail] = useState("");
+
+    useEffect(() => {
+        Auth.currentUserInfo().then(response => {
+            let user = response["attributes"]["email"]
+            console.log(user)
+            setEmail(user)
+        })
+    }, [])
+
     const navigate = useNavigate();
 
     const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,54 +28,28 @@ const NewWorkflow = () => {
     }
 
     const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
-        console.log("form submitted");
         event.preventDefault();
-        WorkflowService.createWorkflow("myCoolWorkflow")
-        // const path = '/workflows'
-        // const options = {
-        //     url: path,
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     data: {
-
-        //     }
-        // }
-        // axios(options)
-        //     .then(response => response.data)
-        //     .then(data => {
-        //         uploadFiles(data['workflow_id'])
-        //     })
-        //     .then(() => navigate('/'))
-    }
-
-    const uploadFiles = (workflowId: String) => {
-        const path = `/workflows/${workflowId}/upload`;
-        const formData = new FormData()
-        if (!fileInput) return;
-        formData.append('input_file', fileInput.name)
-        const options = {
-            url: path,
-            method: 'POST',
-            data: formData
+        if (fileInput) {
+            WorkflowService.createWorkflow("myCoolWorkflow", email)
+                .then(response => {
+                    StorageService.uploadFile(response, fileInput)
+                });
+            navigate("/", { replace: true })
         }
-        axios(options)
     }
-
-
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <h1>New workflow</h1>
                 <Button variant="contained" component="label">
                     Upload File
                     <input
                         type="file"
+                        accept="image/png, image/jpeg"
                         onChange={(e) => handleFileInputChange(e)}
                         hidden={true} />
                 </Button>
+                <TextField variant="outlined" disabled value={fileInput?.name} />
                 <input
                     type="submit"
                     value="Submit" />
