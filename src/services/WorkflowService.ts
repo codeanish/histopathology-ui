@@ -1,6 +1,6 @@
 import { API } from "aws-amplify";
 import { v4 as uuid4 } from 'uuid';
-import { Workflow } from "../shared/types";
+import { Status, Workflow } from "../shared/types";
 
 const apiName = "histopathology"
 const path = '/workflows';
@@ -28,6 +28,23 @@ const createWorkflow = (workflowName: string, email: string): Promise<string> =>
     return res;
 }
 
+const updateWorkflowStatus = (id: string, status: Status): Promise<any> => {
+    let params = {
+        body: {
+            "workflowStatus": status
+        },
+        headers: {}
+    }
+    let workflowPath = path + "/" + id;
+    const res = API
+        .patch(apiName, workflowPath, params)
+        .catch(error => {
+            console.log("Cannot update workflow")
+            throw new Error(error)
+        })
+    return res;
+}
+
 const getWorkflows = (): Promise<Workflow[]> => {
     let params = {
         headers: {
@@ -48,7 +65,8 @@ const getWorkflows = (): Promise<Workflow[]> => {
 
 const WorkflowService = {
     createWorkflow,
-    getWorkflows
+    getWorkflows,
+    updateWorkflowStatus
 }
 
 export default WorkflowService

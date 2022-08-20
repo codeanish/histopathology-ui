@@ -1,9 +1,10 @@
-import { Button, TextField } from "@mui/material";
+import { Button, Card, Paper, TextField } from "@mui/material";
 import { Auth } from "aws-amplify";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import StorageService from "../services/StorageService";
 import WorkflowService from "../services/WorkflowService"
+import { Status } from "../shared/types";
 
 const NewWorkflow = () => {
 
@@ -31,10 +32,14 @@ const NewWorkflow = () => {
         event.preventDefault();
         if (fileInput) {
             WorkflowService.createWorkflow("myCoolWorkflow", email)
-                .then(response => {
-                    StorageService.uploadFile(response, fileInput)
+                .then(workflowId => {
+                    StorageService.uploadFile(workflowId, fileInput)
+                        .then(() => {
+                            WorkflowService.updateWorkflowStatus(workflowId, Status.PENDING)
+                        })
+                    navigate("/", { replace: true })
                 });
-            navigate("/", { replace: true })
+
         }
     }
 
@@ -54,7 +59,7 @@ const NewWorkflow = () => {
                     type="submit"
                     value="Submit" />
             </form>
-        </div>
+        </div >
     )
 }
 

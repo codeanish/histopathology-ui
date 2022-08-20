@@ -6,7 +6,7 @@ type Props = {
     workflows: Workflow[]
 }
 
-const WorkflowsTable = ({ workflows }: Props) => {
+const WorkflowsTable = ({ workflows }: { workflows: Workflow[] }) => {
     return (
         <TableContainer component={Paper}>
             <Table>
@@ -24,7 +24,7 @@ const WorkflowsTable = ({ workflows }: Props) => {
                             <TableCell>{workflow.id}</TableCell>
                             <TableCell>{workflow.name}</TableCell>
                             <TableCell>{workflow.user}</TableCell>
-                            <TableCell>{workflow.status}</TableCell>
+                            <TableCell>{workflow.workflowStatus}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

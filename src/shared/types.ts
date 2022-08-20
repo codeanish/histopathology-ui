@@ -2,13 +2,13 @@ export type Workflow = {
     id: string,
     name: string,
     user: string,
-    status: Status
+    workflowStatus: Status
 }
 
 export enum Status {
-    CREATED,
-    PENDING,
-    PROCESSING,
-    COMPLETE,
-    ERROR
+    CREATED = "CREATED",
+    PENDING = "PENDING",
+    PROCESSING = "PROCESSING",
+    COMPLETE = "COMPLETE",
+    ERROR = "ERROR"
 }

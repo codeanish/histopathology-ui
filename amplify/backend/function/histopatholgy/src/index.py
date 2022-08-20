@@ -31,7 +31,8 @@ def handler(event, context):
 
   print(event)
   method = event['httpMethod']
-  
+  table = get_table()
+
   if method == "POST":
     data = json.loads(event['body'])
     client.put_item(
@@ -46,7 +47,7 @@ def handler(event, context):
           'user': {
             'S': data['user']
           },
-          'status': {
+          'workflowStatus': {
             'S': 'CREATED'
           }
       }
@@ -63,6 +64,34 @@ def handler(event, context):
     
     return response
 
+  # If it's a PATCH and it's got a workflow id in the URL
+  if method == "PATCH":
+
+    path = event['path']
+    workflow_id = path.split('/')[2]
+    data = json.loads(event['body'])
+    status = data['workflowStatus']
+    table.update_item(
+      TableName=table_name,
+      Key={
+        'id': workflow_id
+      },
+      UpdateExpression='SET workflowStatus = :newStatus',
+      ExpressionAttributeValues={
+        ':newStatus': status
+      },
+      ReturnValues="UPDATED_NEW"
+    )
+    response = {
+      'statusCode': 200,
+      'body': '',
+      'headers': {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        },
+    }
+    return response
+
   if method == "GET":
     data = client.scan(TableName=table_name)    
     response = {
@@ -76,3 +105,7 @@ def handler(event, context):
     return response
 
 
+def get_table():
+  dynamodb = boto3.resource('dynamodb')
+  table = dynamodb.Table(table_name)
+  return table
