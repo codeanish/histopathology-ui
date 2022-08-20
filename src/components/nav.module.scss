@@ -1,16 +1,17 @@
 @import "../styles/variables.scss";
 
-.nav{
+.nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding-top: 1em;
 }
 
-.navItems{
+.navItems {
     display: flex;
+    align-items: center;
 }
 
-.navItem{
+.navItem {
     font-size: 2em;
-    padding-right: 1em;
+    padding-right: 2em;
 }

@@ -1,14 +1,15 @@
-import { Button, Card, Paper, TextField } from "@mui/material";
+import { Button, Card, Chip, Paper, TextField } from "@mui/material";
 import { Auth } from "aws-amplify";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import StorageService from "../services/StorageService";
 import WorkflowService from "../services/WorkflowService"
 import { Status } from "../shared/types";
+import styles from "./new-workflow.module.scss"
 
 const NewWorkflow = () => {
 
-    const [fileInput, setFileInput] = useState<File>();
+    const [fileInput, setFileInput] = useState<File | null>();
     const [submitted, setSubmitted] = useState(false);
     const [email, setEmail] = useState("");
 
@@ -24,6 +25,7 @@ const NewWorkflow = () => {
 
     const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const fileList = event.target.files;
+        console.log(fileList)
         if (!fileList) return;
         setFileInput(fileList[0])
     }
@@ -43,9 +45,13 @@ const NewWorkflow = () => {
         }
     }
 
+    const handleDelete = () => {
+        setFileInput(null);
+    }
+
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className={styles.container}>
+            <form onSubmit={handleSubmit} className={styles.formContainer}>
                 <Button variant="contained" component="label">
                     Upload File
                     <input
@@ -54,10 +60,8 @@ const NewWorkflow = () => {
                         onChange={(e) => handleFileInputChange(e)}
                         hidden={true} />
                 </Button>
-                <TextField variant="outlined" disabled value={fileInput?.name} />
-                <input
-                    type="submit"
-                    value="Submit" />
+                {fileInput?.name ? <Chip label={fileInput.name} onDelete={handleDelete} /> : <></>}
+                <Button variant="contained" type="submit" disabled={fileInput == null}>Submit</Button>
             </form>
         </div >
     )
